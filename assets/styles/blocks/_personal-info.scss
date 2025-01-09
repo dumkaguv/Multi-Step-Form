@@ -1,5 +1,13 @@
 @use "../helpers" as *;
 
 .personal-info {
-  
+  display: grid;
+  row-gap: rem(30);
+  width: 100%;
+  max-width: 90%;
+
+  &__body {
+    display: grid;
+    row-gap: rem(25);
+  }
 }

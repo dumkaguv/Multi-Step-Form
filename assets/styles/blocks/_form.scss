@@ -1,7 +1,78 @@
 @use "../helpers" as *;
 
 .form {
+  display: grid;
+  column-gap: rem(80);
+  grid-template-columns: auto 1fr;
   background-color: var(--color-light);
-  border-radius: rem(10);
+  border-radius: rem(12);
   padding: rem(20);
+  min-height: rem(600);
+  max-height: rem(600);
+  max-width: rem(900);
+  width: 100%;
+  align-self: center;
+  justify-self: center;
+  height: 100%;
+
+  &__header {
+    display: grid;
+    row-gap: rem(5);
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: fluid(24, 36);
+  }
+
+  &__description {
+    font-weight: 400;
+    color: var(--color-gray);
+  }
+
+  &__body {
+    padding-top: rem(30);
+    display: flex;
+    width: 100%;
+    flex: 1;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    &:not(:has(.form__button--prev)) {
+      .form__button {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    column-gap: rem(15);
+    font-weight: 450;
+    color: var(--color-gray);
+    transition-duration: var(--transition-duration);
+
+    @include hover {
+      color: var(--color-light);
+    }
+
+    &--next {
+      padding: rem(10) rem(20);
+      color: var(--color-light);
+      border-radius: rem(8);
+      background-color: var(--color-blue-marine);
+
+      @include hover {
+        background-color: var(--color-blue-purplish);
+      }
+    }
+  }
 }

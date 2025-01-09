@@ -2,14 +2,53 @@
 
 .steps {
   border-radius: rem(8);
-  height: 100%;
   padding: rem(30);
+  padding-right: rem(90);
+  height: 100%;
   background: url("../../images/bg-sidebar-desktop.svg") center / cover no-repeat;
-  width: 25%;
   color: var(--color-light);
 
   &__list {
     display: grid;
     row-gap: rem(20);
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      column-gap: rem(15);
+    }
+  }
+
+  &__label {
+    --size: #{rem(36)};
+
+    @include square(var(--size));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: rem(1) solid var(--color-light);
+    border-radius: 50%;
+
+    &--active {
+      background-color: var(--color-blue-light);
+      border-color: var(--color-blue-light);
+
+      .steps__label-step {
+        color: var(--color-blue-marine);
+      }
+    }
+  }
+
+  &__info {
+    display: grid;
+
+    &-title {
+      font-weight: 400;
+      font-size: rem(14);
+      color: var(--color-gray-light);
+    }
   }
 }
