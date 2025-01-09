@@ -1,0 +1,24 @@
+@use "../helpers" as *;
+
+:root {
+  --color-light: #ffffff;
+  --color-light-alt: #fafbff;
+  --color-light-blue: #f0f6ff;
+
+  --color-gray-light: #d6d9e6;
+  --color-gray: #9699ab;
+
+  --color-blue-marine: #02295a;
+  --color-blue-purplish: #473dff;
+  --color-blue-pastel: #adbeff;
+  --color-blue-light: #bfe2fd;
+
+  --color-red: #ed3548;
+
+  --font-family-base: "Ubuntu", sans-serif;
+
+  --container-width: #{rem(1440)};
+  --container-padding-x: #{rem(16)};
+
+  --transition-duration: 0.2s;
+}

@@ -1,0 +1,7 @@
+@use "../helpers" as *;
+
+.form {
+  background-color: var(--color-light);
+  border-radius: rem(10);
+  padding: rem(20);
+}

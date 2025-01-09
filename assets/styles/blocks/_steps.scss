@@ -1,0 +1,15 @@
+@use "../helpers" as *;
+
+.steps {
+  border-radius: rem(8);
+  height: 100%;
+  padding: rem(30);
+  background: url("../../images/bg-sidebar-desktop.svg") center / cover no-repeat;
+  width: 25%;
+  color: var(--color-light);
+
+  &__list {
+    display: grid;
+    row-gap: rem(20);
+  }
+}
