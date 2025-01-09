@@ -1,7 +1,16 @@
 @use "../helpers" as *;
 
 .section {
-  margin-block: auto;
-  height: 100%;
-  width: 70%;
+  @include mobile-above {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    margin-block: auto;
+    width: 70%;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
 }

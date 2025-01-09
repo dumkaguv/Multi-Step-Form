@@ -389,16 +389,26 @@ a[class] {
   -moz-column-gap: 5rem;
        column-gap: 5rem;
   grid-template-columns: auto 1fr;
+  grid-template-areas: "steps form" "steps actions";
   background-color: var(--color-light);
   border-radius: 0.75rem;
   padding: 1.25rem;
-  min-height: 37.5rem;
-  max-height: 37.5rem;
-  max-width: 56.25rem;
   width: 100%;
   align-self: center;
   justify-self: center;
   height: 100%;
+}
+@media (width > 47.99875rem) {
+  .form {
+    min-height: 37.5rem;
+    max-height: 37.5rem;
+    max-width: 56.25rem;
+  }
+}
+@media (width <= 47.99875rem) {
+  .form {
+    display: contents;
+  }
 }
 .form__header {
   display: grid;
@@ -418,16 +428,41 @@ a[class] {
   width: 100%;
   flex: 1;
 }
+@media (width <= 47.99875rem) {
+  .form__body {
+    position: relative;
+    background-color: var(--color-light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    top: -4.6875rem;
+    z-index: 10;
+  }
+}
 .form__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   position: relative;
+  max-width: 90%;
+  background-color: #fff;
+}
+@media (width <= 47.99875rem) {
+  .form__actions {
+    max-width: unset;
+    min-height: 5rem;
+    padding: 1.25rem;
+  }
 }
 .form__actions:not(:has(.form__button--prev)) .form__button {
-  position: absolute;
-  right: 0;
+  display: flex;
+  margin-left: auto;
+}
+@media (width > 47.99875rem) {
+  .form__actions:not(:has(.form__button--prev)) .form__button {
+    position: absolute;
+    right: 0;
+  }
 }
 .form__button {
   display: flex;
@@ -440,12 +475,12 @@ a[class] {
 }
 @media (hover: hover) {
   .form__button:hover {
-    color: var(--color-light);
+    color: var(--color-blue-marine);
   }
 }
 @media (hover: none) {
   .form__button:active {
-    color: var(--color-light);
+    color: var(--color-blue-marine);
   }
 }
 .form__button--next {
@@ -457,33 +492,66 @@ a[class] {
 @media (hover: hover) {
   .form__button--next:hover {
     background-color: var(--color-blue-purplish);
+    color: var(--color-light);
   }
 }
 @media (hover: none) {
   .form__button--next:active {
     background-color: var(--color-blue-purplish);
+    color: var(--color-light);
   }
 }
 
-.section {
-  margin-block: auto;
-  height: 100%;
-  width: 70%;
+@media (width > 47.99875rem) {
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    margin-block: auto;
+    width: 70%;
+  }
+}
+@media (width <= 63.99875rem) {
+  .section {
+    width: 100%;
+  }
 }
 
 .steps {
   border-radius: 0.5rem;
   padding: 1.875rem;
   padding-right: 5.625rem;
+  grid-area: steps;
   height: 100%;
   background: url("../../images/bg-sidebar-desktop.svg") center/cover no-repeat;
   color: var(--color-light);
+}
+@media (width <= 47.99875rem) {
+  .steps {
+    position: relative;
+    background-image: url("../../images/bg-sidebar-mobile.svg");
+    width: 100dvw;
+    left: calc(var(--container-padding-x) * -1);
+    border-radius: 0;
+    min-height: 11.25rem;
+    padding-right: 1.875rem;
+  }
 }
 .steps__list {
   display: grid;
   row-gap: 1.25rem;
   text-transform: uppercase;
   font-weight: 500;
+}
+@media (width <= 47.99875rem) {
+  .steps__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -moz-column-gap: 0.9375rem;
+         column-gap: 0.9375rem;
+  }
 }
 .steps__list-item {
   display: flex;
@@ -500,6 +568,9 @@ a[class] {
   justify-content: center;
   border: 0.0625rem solid var(--color-light);
   border-radius: 50%;
+}
+.steps__label-step {
+  font-weight: 700;
 }
 .steps__label--active {
   background-color: var(--color-blue-light);
@@ -521,7 +592,11 @@ a[class] {
   display: grid;
   row-gap: 1.875rem;
   width: 100%;
-  max-width: 90%;
+}
+@media (width > 47.99875rem) {
+  .personal-info {
+    max-width: 90%;
+  }
 }
 .personal-info__body {
   display: grid;

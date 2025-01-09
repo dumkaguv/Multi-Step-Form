@@ -4,7 +4,10 @@
   display: grid;
   row-gap: rem(30);
   width: 100%;
-  max-width: 90%;
+
+  @include mobile-above {
+    max-width: 90%;
+  }
 
   &__body {
     display: grid;

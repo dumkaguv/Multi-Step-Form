@@ -4,15 +4,33 @@
   border-radius: rem(8);
   padding: rem(30);
   padding-right: rem(90);
+  grid-area: steps;
   height: 100%;
   background: url("../../images/bg-sidebar-desktop.svg") center / cover no-repeat;
   color: var(--color-light);
+
+  @include mobile {
+    position: relative;
+    background-image: url("../../images/bg-sidebar-mobile.svg");
+    width: 100dvw;
+    left: calc(var(--container-padding-x) * -1);
+    border-radius: 0;
+    min-height: rem(180);
+    padding-right: rem(30);
+  }
 
   &__list {
     display: grid;
     row-gap: rem(20);
     text-transform: uppercase;
     font-weight: 500;
+
+    @include mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: rem(15);
+    }
 
     &-item {
       display: flex;
@@ -31,6 +49,11 @@
     justify-content: center;
     border: rem(1) solid var(--color-light);
     border-radius: 50%;
+    
+
+    &-step {
+      font-weight: 700;
+    }
 
     &--active {
       background-color: var(--color-blue-light);
