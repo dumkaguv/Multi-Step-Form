@@ -6,7 +6,8 @@
   padding-right: rem(90);
   grid-area: steps;
   height: 100%;
-  background: url("../../images/bg-sidebar-desktop.svg") center / cover no-repeat;
+  background: url("../../images/bg-sidebar-desktop.svg") center / cover
+    no-repeat;
   color: var(--color-light);
 
   @include mobile {
@@ -49,7 +50,6 @@
     justify-content: center;
     border: rem(1) solid var(--color-light);
     border-radius: 50%;
-    
 
     &-step {
       font-weight: 700;

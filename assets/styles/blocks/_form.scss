@@ -4,7 +4,7 @@
   display: grid;
   column-gap: rem(80);
   grid-template-columns: auto 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "steps form"
     "steps actions";
   background-color: var(--color-light);
@@ -16,7 +16,7 @@
   height: 100%;
 
   @include mobile-above {
-    min-height: rem(600);
+    overflow-y: auto;
     max-height: rem(600);
     max-width: rem(900);
   }
@@ -63,11 +63,12 @@
     width: 100%;
     position: relative;
     max-width: 90%;
+    min-height: rem(80);
+    height: 100%;
     background-color: #fff;
 
     @include mobile {
       max-width: unset;
-      min-height: rem(80);
       padding: rem(20);
     }
 
@@ -91,6 +92,10 @@
     font-weight: 450;
     color: var(--color-gray);
     transition-duration: var(--transition-duration);
+    
+    & > * {
+      pointer-events: none;
+    }
 
     @include hover {
       color: var(--color-blue-marine);

@@ -370,7 +370,11 @@ a[class] {
 
 .field {
   display: grid;
+  position: relative;
   row-gap: 0.3125rem;
+}
+.field:has(.field__errors:not(:empty)) .field__control {
+  border-color: var(--color-red);
 }
 .field__control {
   border-radius: 0.375rem;
@@ -382,6 +386,13 @@ a[class] {
 .field__control:hover, .field__control:focus-visible {
   outline: 0.0625rem;
   border-color: var(--color-blue-purplish);
+}
+.field__errors {
+  font-size: 0.875rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--color-red);
 }
 
 .form {
@@ -400,7 +411,7 @@ a[class] {
 }
 @media (width > 47.99875rem) {
   .form {
-    min-height: 37.5rem;
+    overflow-y: auto;
     max-height: 37.5rem;
     max-width: 56.25rem;
   }
@@ -445,12 +456,13 @@ a[class] {
   width: 100%;
   position: relative;
   max-width: 90%;
+  min-height: 5rem;
+  height: 100%;
   background-color: #fff;
 }
 @media (width <= 47.99875rem) {
   .form__actions {
     max-width: unset;
-    min-height: 5rem;
     padding: 1.25rem;
   }
 }
@@ -472,6 +484,9 @@ a[class] {
   font-weight: 450;
   color: var(--color-gray);
   transition-duration: var(--transition-duration);
+}
+.form__button > * {
+  pointer-events: none;
 }
 @media (hover: hover) {
   .form__button:hover {
