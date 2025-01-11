@@ -1,0 +1,81 @@
+@use "../helpers" as *;
+
+.plans {
+  display: grid;
+  row-gap: rem(30);
+  width: 100%;
+
+  @include mobile-above {
+    max-width: 90%;
+  }
+
+  &__body {
+    display: grid;
+    row-gap: rem(25);
+  }
+  
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    column-gap: rem(20);
+
+    @include mobile-m {
+      display: flex;
+      row-gap: rem(10);
+      flex-direction: column;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: rem(20);
+    height: rem(200);
+    padding: rem(15);
+    border-radius: rem(8);
+    transition-duration: var(--transition-duration);
+    border: rem(1) solid var(--color-gray-light);
+    cursor: pointer;
+
+    @include mobile-m {
+      flex-direction: row;
+      justify-content: start;
+      column-gap: rem(20);
+      height: rem(90);
+    }
+
+    & * {
+      pointer-events: none;
+    }
+
+    &.is-selected {
+      border: rem(1) solid var(--color-blue-purplish);
+      background-color: var(--color-light-blue);
+    }
+
+    @include hover {
+      border: rem(1) solid var(--color-blue-purplish);
+    }
+
+    &-info {
+      display: grid;
+      row-gap: rem(2);
+
+      &-key {
+        font-size: fluid(14, 18);
+        font-weight: 700;
+      }
+
+      &-value {
+        font-size: fluid(14, 16);
+        color: var(--color-gray);
+      }
+
+      &-extra {
+
+      }
+    }
+  }
+}

@@ -7,29 +7,26 @@ class FormStepsController {
 
   constructor() {
     this.rootElement = document.querySelector(this.selectors.root);
-    this.currentStep = 0;
-    this.init();
+    this.currentStep = 1;
   }
 
   formatStep(step) {
     return `step-${step}`;
   }
 
-  renderStep = (isForward = true) => {
+  renderStep = (step, isForward = true) => {
     this.rootElement.innerHTML = "";
     this.rootElement.insertAdjacentHTML(
       "beforeend",
-      steps[this.formatStep(this.currentStep)]
+      steps[this.formatStep(step)]
     );
 
     this.currentStep = this.currentStep + (isForward ? 1 : -1);
-    
-  }
 
-  init() {
-    this.renderStep();
-    this.currentStep--;
-  }
+    if (this.currentStep < 0) {
+      this.currentStep = 0;
+    }
+  };
 }
 
 export default FormStepsController;
