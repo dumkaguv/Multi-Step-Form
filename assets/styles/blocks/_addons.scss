@@ -1,0 +1,88 @@
+@use "../helpers" as *;
+
+.addons {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(35);
+  width: 90%;
+
+  &__list {
+    display: grid;
+    row-gap: rem(15);
+  }
+
+  &__checkbox {
+    position: relative;
+    appearance: none;
+    display: inline-block; 
+    align-self: center;
+    justify-self: center;
+    width: rem(26);
+    height: rem(22);
+    margin: 0;
+    border: rem(1) solid var(--color-gray-light);
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: rem(6);     
+    transition: background-color var(--transition-duration),
+      border-color var(--transition-duration);
+  
+    &:checked {
+      background-color: var(--color-blue-purplish);
+      border-color: var(--color-blue-dark);
+
+      &::before {
+        content: '✔';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        color: var(--color-light);
+      }
+    }
+  }
+
+  &__card {
+    display: flex;
+    column-gap: rem(20);
+    padding: rem(20);
+    border: rem(1) solid var(--color-gray-light);
+    border-radius: rem(8);
+
+    &.is-selected {
+      border-color: var(--color-blue-purplish);
+      background-color: var(--color-light-blue);
+    }
+
+    @include hover {
+      border-color: var(--color-blue-purplish);
+      background-color: var(--color-light-blue);
+    }
+
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-title {
+      font-weight: 700;
+      color: var(--color-blue-marine);
+    }
+
+    &-description {
+      color: var(--color-gray);
+    }
+
+    &-price {
+      color: var(--color-blue-purplish);
+      font-weight: 500;
+    }
+  }
+}

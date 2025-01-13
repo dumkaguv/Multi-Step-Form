@@ -13,6 +13,7 @@ class FormsValidation {
     0: Step_0_Validation,
     1: Step_1_Validation,
     2: Step_2_Validation,
+    3: Step_3_Validation,
   };
 
   constructor(formStepsControllerInstance) {
@@ -46,10 +47,7 @@ class FormsValidation {
 
     this.stepLabelElements.forEach((element, indexElement) => {
       const isCurrentStep = this.currentStep === indexElement;
-      element.classList.toggle(
-        this.stateClasses.stepLabelActive,
-        isCurrentStep
-      );
+      element.classList.toggle(this.stateClasses.stepLabelActive, isCurrentStep);
     });
   };
 }
@@ -81,9 +79,7 @@ class Step_0_Validation {
     this.fieldControlElements = this.rootElement.querySelectorAll(
       this.selectors.fieldControl
     );
-    this.formActionsElement = document.querySelectorAll(
-      this.selectors.formActions
-    );
+    this.formActionsElement = document.querySelectorAll(this.selectors.formActions);
     this.data = {};
 
     this.bindEvents();
@@ -110,10 +106,7 @@ class Step_0_Validation {
     );
 
     if (isEmptyField) {
-      return this.manageErrors(
-        fieldElement,
-        this.errorMessages.valueMissing
-      );
+      return this.manageErrors(fieldElement, this.errorMessages.valueMissing);
     } else if (isEmailField) {
       const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (!emailPattern.test(fieldControlElement.value)) {
@@ -138,9 +131,7 @@ class Step_0_Validation {
   validateField = (fieldControlElement) => {
     const fieldElement = fieldControlElement.closest(this.selectors.field);
 
-    const errorFieldElement = fieldElement.querySelector(
-      this.selectors.fieldErrors
-    );
+    const errorFieldElement = fieldElement.querySelector(this.selectors.fieldErrors);
     errorFieldElement?.remove();
 
     return this.manageErrorsType(fieldControlElement, fieldElement);
@@ -158,19 +149,15 @@ class Step_0_Validation {
 
   onFormActionsClick = (event) => {
     const target = event.target;
-    const nextButtons = document.querySelectorAll(
-      this.selectors.nextStepButton
-    );
-    const isNextButton = [...nextButtons].some(
-      (button) => button === target
-    );
+    const nextButtons = document.querySelectorAll(this.selectors.nextStepButton);
+    const isNextButton = [...nextButtons].some((button) => button === target);
 
     if (isNextButton) {
       let isFormValid = true;
       let firstInvalidFieldControl = null;
-      const requiredControlElements = [
-        ...this.fieldControlElements,
-      ].filter(({ required }) => required);
+      const requiredControlElements = [...this.fieldControlElements].filter(
+        ({ required }) => required
+      );
 
       requiredControlElements.forEach((fieldControlElement) => {
         const isFieldValid = this.validateField(fieldControlElement);
@@ -232,6 +219,8 @@ class Step_1_Validation {
 
     plansCard: "[data-js-form-plans-card]",
     plansCardInfo: "[data-js-plans-card-info]",
+    plansPrice: "[data-js-plan-price]",
+    plansExtra: "[data-plan-extra]",
 
     formActions: "[data-js-form-actions]",
     nextStepButton: "[data-js-form-actions-next]",
@@ -247,9 +236,7 @@ class Step_1_Validation {
     this.formsValidationInstance = formsValidationInstance;
     this.rootElement = document.querySelector(root);
 
-    this.switcherElement = this.rootElement.querySelector(
-      this.selectors.switcher
-    );
+    this.switcherElement = this.rootElement.querySelector(this.selectors.switcher);
     this.switcherCheckboxElement = this.switcherElement.querySelector(
       this.selectors.switcherCheckbox
     );
@@ -267,9 +254,7 @@ class Step_1_Validation {
       this.selectors.plansCard
     );
 
-    this.formActionsElement = document.querySelectorAll(
-      this.selectors.formActions
-    );
+    this.formActionsElement = document.querySelectorAll(this.selectors.formActions);
 
     this.data = {};
 
@@ -293,16 +278,18 @@ class Step_1_Validation {
 
   changeTextPriceCard = (isChecked) => {
     [...this.plansCardElements].forEach((plansCardElement) => {
-      const priceElement = plansCardElement.querySelector(
-        "[data-js-plan-price]"
-      );
+      const priceElement = plansCardElement.querySelector("[data-js-plan-price]");
       if (isChecked) {
-        priceElement.textContent = `$${priceElement.textContent.slice(1, 3) * 10}/yr`
+        priceElement.textContent = `$${
+          priceElement.textContent.slice(1, 3) * 10
+        }/yr`;
       } else {
-        priceElement.textContent = `$${priceElement.textContent.slice(1, 4) / 10}/mo`
+        priceElement.textContent = `$${
+          priceElement.textContent.slice(1, 4) / 10
+        }/mo`;
       }
     });
-  }
+  };
 
   onSwitcherCheckboxChange = () => {
     const isChecked = this.switcherCheckboxElement.checked;
@@ -323,19 +310,11 @@ class Step_1_Validation {
   onFormActionsClick = (event) => {
     const target = event.target;
 
-    const nextButtons = document.querySelectorAll(
-      this.selectors.nextStepButton
-    );
-    const isNextButton = [...nextButtons].some(
-      (button) => button === target
-    );
+    const nextButtons = document.querySelectorAll(this.selectors.nextStepButton);
+    const isNextButton = [...nextButtons].some((button) => button === target);
 
-    const prevButtons = document.querySelectorAll(
-      this.selectors.prevStepButton
-    );
-    const isPrevButton = [...prevButtons].some(
-      (button) => button === target
-    );
+    const prevButtons = document.querySelectorAll(this.selectors.prevStepButton);
+    const isPrevButton = [...prevButtons].some((button) => button === target);
 
     if (isNextButton) {
       this.saveData();
@@ -351,45 +330,38 @@ class Step_1_Validation {
     const plansCardElement = event.target;
 
     [...this.plansCardElements].forEach((plansCardElement) => {
-      plansCardElement.classList.remove(
-        this.stateClasses.plansCardIsSelected
-      );
+      plansCardElement.classList.remove(this.stateClasses.plansCardIsSelected);
     });
 
-    plansCardElement.classList.toggle(
-      this.stateClasses.plansCardIsSelected
-    );
+    plansCardElement.classList.toggle(this.stateClasses.plansCardIsSelected);
   };
 
-  saveData = () => {
-    this.plansCardElements.forEach((plansCardElement) => {
-      const isSelected = plansCardElement.classList.contains(
+  saveData() {
+    const planCards = document.querySelectorAll(this.selectors.plansCard);
+
+    planCards.forEach((planCard) => {
+      const isSelected = planCard.classList.contains(
         this.stateClasses.plansCardIsSelected
       );
       if (isSelected) {
-        this.data["plan-name"] = plansCardElement.dataset.planName
-        this.data["plan-price"] = plansCardElement
-          .querySelector("[data-js-plan-price]")
-          .textContent.trim()
-          .slice(
-            0,
-            plansCardElement
-              .querySelector("[data-js-plan-price]")
-              .textContent.trim()
-              .indexOf("/")
-          );
+        this.data["plan-name"] = planCard.dataset.planName;
 
-        this.data["plan-tarif"] = plansCardElement.querySelector(
-          "[data-plan-extra]"
-        )
+        const priceElement = planCard.querySelector(this.selectors.plansPrice);
+        const rawPriceText = priceElement?.textContent.trim() || "";
+        const price = rawPriceText.slice(
+          0,
+          rawPriceText.indexOf("/") || rawPriceText.length
+        );
+        this.data["plan-price"] = price;
+
+        this.data["plan-tarif"] = planCard.querySelector(this.selectors.plansExtra)
           ? "yearly"
           : "monthly";
 
         this.formsValidationInstance.saveData(this.data);
-        return;
       }
     });
-  };
+  }
 
   isPressedEnter = (event) => {
     return event.key === "Enter" || event.code === "Enter";
@@ -403,17 +375,13 @@ class Step_1_Validation {
 
     this.switcherToggleElement.addEventListener("keydown", (event) => {
       if (this.isPressedEnter(event)) {
-        this.switcherCheckboxElement.checked =
-          !this.switcherCheckboxElement.checked;
+        this.switcherCheckboxElement.checked = !this.switcherCheckboxElement.checked;
         this.onSwitcherCheckboxChange();
       }
     });
 
     this.formActionsElement.forEach((formActionsElement) => {
-      formActionsElement.addEventListener(
-        "click",
-        this.onFormActionsClick
-      );
+      formActionsElement.addEventListener("click", this.onFormActionsClick);
     });
 
     this.plansCardElements.forEach((plansCardElement) => {
@@ -427,6 +395,131 @@ class Step_1_Validation {
   };
 }
 
-class Step_2_Validation {}
+class Step_2_Validation {
+  selectors = {
+    addonsCard: "[data-js-addons-card]",
+    addonsPrice: "[data-js-addons-price]",
+    addonsTitle: "[data-js-addons-title]",
+
+    formActions: "[data-js-form-actions]",
+    nextStepButton: "[data-js-form-actions-next]",
+    prevStepButton: "[data-js-form-actions-prev]",
+  };
+
+  addonsPrices = {
+    onlineService: {
+      mo: "+1$/mo",
+      yr: "+10$/yr",
+    },
+    largerStorage: {
+      mo: "+2$/mo",
+      yr: "+20$/yr",
+    },
+    customizableProfile: {
+      mo: "+3$/mo",
+      yr: "+30$/yr",
+    },
+  };
+
+  stateClasses = {
+    isSelected: "is-selected",
+  };
+
+  constructor(formsValidationInstance) {
+    this.formsValidationInstance = formsValidationInstance;
+    this.rootElement = document.querySelector(root);
+    this.data = {};
+    this.data.addons = [];
+    this.formActionsElement = document.querySelectorAll(this.selectors.formActions);
+    this.addonsCardElements = this.rootElement.querySelectorAll(
+      this.selectors.addonsCard
+    );
+
+    this.bindEvents();
+    this.renderAddonsPrice();
+  }
+
+  renderAddonsPrice = () => {
+    const isMonthlyTarif =
+      this.formsValidationInstance.data["plan-tarif"] === "monthly";
+
+    const getPriceByTarif = (addonsCardElement) => {
+      const currentTarif = isMonthlyTarif ? "mo" : "yr";
+      const addonsCardName = addonsCardElement
+        .querySelector(this.selectors.addonsTitle)
+        .dataset.jsAddonsTitle.trim();
+      const priceTemplate = `${this.addonsPrices[addonsCardName][currentTarif]}`;
+      const tarifPriceElement = addonsCardElement.querySelector(
+        this.selectors.addonsPrice
+      );
+
+      tarifPriceElement.textContent = priceTemplate;
+    };
+
+    this.addonsCardElements.forEach((addonsCardElement) => {
+      getPriceByTarif(addonsCardElement);
+    });
+  };
+
+  onAddonsCardClick = (event) => {
+    const addonsCardElement = event.target.closest(this.selectors.addonsCard);
+    const isCheckbox = event.target.tagName === "INPUT";
+
+    if (!addonsCardElement || isCheckbox) {
+      addonsCardElement.classList.toggle(this.stateClasses.isSelected);
+    }
+  };
+
+  onFormActionsClick = (event) => {
+    const target = event.target;
+
+    const nextButtons = document.querySelectorAll(this.selectors.nextStepButton);
+    const isNextButton = [...nextButtons].some((button) => button === target);
+
+    const prevButtons = document.querySelectorAll(this.selectors.prevStepButton);
+    const isPrevButton = [...prevButtons].some((button) => button === target);
+
+    if (isNextButton) {
+      this.saveData();
+      this.formsValidationInstance.currentStep++;
+      this.formsValidationInstance.init();
+    } else if (isPrevButton) {
+      this.formsValidationInstance.currentStep--;
+      this.formsValidationInstance.init();
+    }
+  };
+
+  saveData = () => {
+    [...this.addonsCardElements]
+      .filter((element) => {
+        const isSelected = element.classList.contains(this.stateClasses.isSelected);
+        return isSelected;
+      })
+      .forEach((element) => {
+        const elementTextContent = element.querySelector(this.selectors.addonsTitle)
+          .textContent;
+        const elementPrice = element.querySelector(
+          this.selectors.addonsPrice
+        ).textContent;
+        const obj = { name: elementTextContent, price: elementPrice };
+        this.data.addons.push(obj);
+      });
+    this.formsValidationInstance.saveData(this.data);
+  };
+
+  bindEvents = () => {
+    this.addonsCardElements.forEach((addonsCardElement) => {
+      addonsCardElement.addEventListener("click", this.onAddonsCardClick);
+    });
+
+    this.formActionsElement.forEach((formActionsElement) => {
+      formActionsElement.addEventListener("click", this.onFormActionsClick);
+    });
+  };
+}
+
+class Step_3_Validation {
+  constructor() {}
+}
 
 export default FormsValidation;

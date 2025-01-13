@@ -7,7 +7,7 @@ class FormStepsController {
 
   constructor() {
     this.rootElement = document.querySelector(this.selectors.root);
-    this.currentStep = 1;
+    this.currentStep = 2;
   }
 
   formatStep(step) {
@@ -16,11 +16,8 @@ class FormStepsController {
 
   renderStep = (step, isForward = true) => {
     this.rootElement.innerHTML = "";
-    this.rootElement.insertAdjacentHTML(
-      "beforeend",
-      steps[this.formatStep(step)]
-    );
-
+    this.rootElement.insertAdjacentHTML("beforeend", steps[this.formatStep(step)]);
+    
     this.currentStep = this.currentStep + (isForward ? 1 : -1);
 
     if (this.currentStep < 0) {
