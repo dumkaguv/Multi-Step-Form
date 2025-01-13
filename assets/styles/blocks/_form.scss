@@ -61,11 +61,17 @@
     max-width: 90%;
     min-height: rem(80);
     height: 100%;
-    background-color: #fff;
+    background-color: var(--color-light);
 
     @include mobile {
+      position: fixed;
+      bottom: 0;
+      left: 0;
       max-width: unset;
       padding: rem(20);
+      width: 100dvw;
+      height: fit-content;
+      z-index: 10;
     }
 
     &:not(:has(.form__button--prev)) {

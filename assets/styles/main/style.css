@@ -455,12 +455,19 @@ a[class] {
   max-width: 90%;
   min-height: 5rem;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--color-light);
 }
 @media (width <= 47.99875rem) {
   .form__actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     max-width: unset;
     padding: 1.25rem;
+    width: 100dvw;
+    height: -moz-fit-content;
+    height: fit-content;
+    z-index: 10;
   }
 }
 .form__actions:not(:has(.form__button--prev)) .form__button {
@@ -756,6 +763,11 @@ a[class] {
   row-gap: 2.1875rem;
   width: 90%;
 }
+@media (width <= 47.99875rem) {
+  .addons {
+    width: 100%;
+  }
+}
 .addons__list {
   display: grid;
   row-gap: 0.9375rem;
@@ -833,4 +845,90 @@ a[class] {
 .addons__card-price {
   color: var(--color-blue-purplish);
   font-weight: 500;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.1875rem;
+  width: 90%;
+}
+@media (width <= 47.99875rem) {
+  .summary {
+    width: 100%;
+  }
+}
+.summary__inner {
+  display: grid;
+  padding: 1.25rem;
+  background-color: var(--color-light-alt);
+  border-radius: 0.5rem;
+}
+.summary__inner:has(.summary__list) .summary__header {
+  margin-bottom: 1.5625rem;
+}
+.summary__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.summary__header-price {
+  font-size: clamp(1rem, 0.9567307692rem + 0.1923076923dvw, 1.1875rem);
+  font-weight: 700;
+  color: var(--color-blue-marine);
+}
+.summary__plan {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-weight: 500;
+}
+.summary__plan-title {
+  font-size: clamp(1rem, 0.9711538462rem + 0.1282051282dvw, 1.125rem);
+  color: var(--color-blue-marine);
+}
+.summary__plan-button {
+  color: var(--color-gray);
+  text-decoration: underline;
+}
+@media (hover: hover) {
+  .summary__plan-button:hover {
+    scale: 1.05;
+  }
+}
+@media (hover: none) {
+  .summary__plan-button:active {
+    scale: 1.05;
+  }
+}
+.summary__list {
+  display: grid;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--color-gray-light);
+}
+.summary__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.5rem;
+}
+.summary__item-title {
+  color: var(--color-gray);
+}
+.summary__item-price {
+  font-weight: 500;
+}
+.summary__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1.25rem;
+}
+.summary__total-title {
+  color: var(--color-gray);
+}
+.summary__total-price {
+  font-size: clamp(1.125rem, 1.0673076923rem + 0.2564102564dvw, 1.375rem);
+  color: var(--color-blue-purplish);
+  font-weight: 700;
 }/*# sourceMappingURL=style.css.map */
