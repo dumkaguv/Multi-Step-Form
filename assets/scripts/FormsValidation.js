@@ -18,6 +18,7 @@ class FormsValidation {
     1: Step_1_Validation,
     2: Step_2_Validation,
     3: Step_3_Validation,
+    4: LastStep,
   };
 
   constructor(formStepsControllerInstance) {
@@ -48,10 +49,58 @@ class FormsValidation {
       this.selectors.stepLabel
     );
 
-    this.stepLabelElements.forEach((element, indexElement) => {
-      const isCurrentStep = this.currentStep === indexElement;
-      element.classList.toggle(this.stateClasses.stepLabelActive, isCurrentStep);
-    });
+    if (this.stepLabelElements) {
+      this.stepLabelElements.forEach((element, indexElement, labels) => {
+        const isCurrentStep = this.currentStep === indexElement;
+        if (isCurrentStep) {
+          element.classList.toggle(this.stateClasses.stepLabelActive, isCurrentStep);
+        }
+      });
+    }
+  };
+}
+
+class FormActionsButtons {
+  selectors = {
+    formActions: "[data-js-form-actions]",
+    nextStepButton: "[data-js-form-actions-next]",
+    prevStepButton: "[data-js-form-actions-prev]",
+  };
+
+  constructor(stepInstance) {
+    this.stepInstance = stepInstance;
+    this.formActionsElement = document.querySelector(this.selectors.formActions);
+    this.bindEvents();
+  }
+
+  bindEvents = () => {
+    this.formActionsElement.addEventListener("click", this.onFormActionsClick);
+  };
+
+  onFormActionsClick = (event) => {
+    if (this.stepInstance?.onFormActionsClick) {
+      this.stepInstance.onFormActionsClick();
+      return;
+    }
+    const target = event.target;
+
+    const nextButtons = document.querySelectorAll(this.selectors.nextStepButton);
+    const isNextButton = [...nextButtons].some((button) => button === target);
+
+    const prevButtons = document.querySelectorAll(this.selectors.prevStepButton);
+    const isPrevButton = [...prevButtons].some((button) => button === target);
+
+    if (isNextButton) {
+      if (this.stepInstance.saveData) {
+        this.stepInstance.saveData();
+      }
+
+      this.stepInstance.formsValidationInstance.currentStep++;
+      this.stepInstance.formsValidationInstance.init();
+    } else if (isPrevButton) {
+      this.stepInstance.formsValidationInstance.currentStep--;
+      this.stepInstance.formsValidationInstance.init();
+    }
   };
 }
 
@@ -591,44 +640,16 @@ class Step_3_Validation {
   };
 }
 
-class FormActionsButtons {
-  selectors = {
-    formActions: "[data-js-form-actions]",
-    nextStepButton: "[data-js-form-actions-next]",
-    prevStepButton: "[data-js-form-actions-prev]",
-  };
+class LastStep {
+  constructor(formsValidationInstance) {
+    this.formsValidationInstance = formsValidationInstance;
+    this.rootElement = document.querySelector(root);
 
-  constructor(stepInstance) {
-    this.stepInstance = stepInstance;
-    this.formActionsElement = document.querySelector(this.selectors.formActions);
-    this.bindEvents();
+    this.init();
   }
 
-  bindEvents = () => {
-    this.formActionsElement.addEventListener("click", this.onFormActionsClick);
-  };
-
-  onFormActionsClick = (event) => {
-    if (this.stepInstance?.onFormActionsClick) {
-      this.stepInstance.onFormActionsClick();
-      return;
-    }
-    const target = event.target;
-
-    const nextButtons = document.querySelectorAll(this.selectors.nextStepButton);
-    const isNextButton = [...nextButtons].some((button) => button === target);
-
-    const prevButtons = document.querySelectorAll(this.selectors.prevStepButton);
-    const isPrevButton = [...prevButtons].some((button) => button === target);
-
-    if (isNextButton) {
-      this.stepInstance.saveData();
-      this.stepInstance.formsValidationInstance.currentStep++;
-      this.stepInstance.formsValidationInstance.init();
-    } else if (isPrevButton) {
-      this.stepInstance.formsValidationInstance.currentStep--;
-      this.stepInstance.formsValidationInstance.init();
-    }
+  init = () => {
+    console.log("Last Step");
   };
 }
 

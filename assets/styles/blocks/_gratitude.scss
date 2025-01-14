@@ -1,0 +1,32 @@
+@use "../helpers" as *;
+
+.gratitude {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: rem(25);
+  height: 100%;
+  justify-content: center;
+
+  @include mobile-above {
+    width: 90%;
+    margin-top: fluid(30, 40);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: rem(20);
+  }
+
+  &__title {
+    font-size: fluid(24, 36);
+  }
+
+  &__description {
+    text-align: center;
+    color: var(--color-gray);
+  }
+}

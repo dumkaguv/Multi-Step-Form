@@ -7,7 +7,7 @@ class FormStepsController {
 
   constructor() {
     this.rootElement = document.querySelector(this.selectors.root);
-    this.currentStep = 1;
+    this.currentStep = 0;
   }
 
   formatStep(step) {

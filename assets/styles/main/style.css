@@ -931,4 +931,33 @@ a[class] {
   font-size: clamp(1.125rem, 1.0673076923rem + 0.2564102564dvw, 1.375rem);
   color: var(--color-blue-purplish);
   font-weight: 700;
+}
+
+.gratitude {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5625rem;
+  height: 100%;
+  justify-content: center;
+}
+@media (width > 47.99875rem) {
+  .gratitude {
+    width: 90%;
+    margin-top: clamp(1.875rem, 1.7307692308rem + 0.641025641dvw, 2.5rem);
+  }
+}
+.gratitude__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1.25rem;
+}
+.gratitude__title {
+  font-size: clamp(1.5rem, 1.3269230769rem + 0.7692307692dvw, 2.25rem);
+}
+.gratitude__description {
+  text-align: center;
+  color: var(--color-gray);
 }/*# sourceMappingURL=style.css.map */

@@ -677,6 +677,74 @@ const steps = {
     </main>
     `;
   },
+  get "step-4"() {
+    return `
+    <main class="content">
+      <section class="section container">
+        <form class="form" data-js-form novalidate>
+          <div class="steps" data-js-form-steps>
+            <ul class="steps__list">
+              <li class="steps__list-item">
+                <div class="steps__label" data-js-form-step>
+                  <span class="steps__label-step">1</span>
+                </div>
+                <div class="steps__info hidden-mobile">
+                  <div class="steps__info-title">Step 1</div>
+                  <div class="steps__info-description">Your info</div>
+                </div>
+              </li>
+              <li class="steps__list-item">
+                <div class="steps__label" data-js-form-step>
+                  <span class="steps__label-step">2</span>
+                </div>
+                <div class="steps__info hidden-mobile">
+                  <div class="steps__info-title">Step 2</div>
+                  <div class="steps__info-description">Select Plan</div>
+                </div>
+              </li>
+              <li class="steps__list-item">
+                <div class="steps__label" data-js-form-step>
+                  <span class="steps__label-step">3</span>
+                </div>
+                <div class="steps__info hidden-mobile">
+                  <div class="steps__info-title">Step 3</div>
+                  <div class="steps__info-description">Add-Ons</div>
+                </div>
+              </li>
+              <li class="steps__list-item">
+                <div class="steps__label steps__label--active" data-js-form-step>
+                  <span class="steps__label-step">4</span>
+                </div>
+                <div class="steps__info hidden-mobile">
+                  <div class="steps__info-title">Step 4</div>
+                  <div class="steps__info-description">Summary</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="form__body">
+            <div class="gratitude">
+              <img
+                src="./assets/images/icon-thank-you.svg"
+                alt=""
+                width="80"
+                height="80"
+              />
+              <div class="gratitude__info">
+                <h2 class="gratitude__title">Thank you!</h2>
+                <p class="gratitude__description">
+                  Thanks for confirming your subscription! We hope you have fun using
+                  our platform. If you ever need support, please feel free to email us
+                  at <a href="mailto:zY9Ig@example.com">zY9Ig@example.com</a>.
+                </p>
+              </div>
+            </div>
+        </div>
+        </form>
+      </section>
+    </main>
+    `;
+  },
 };
 
 export default steps;
